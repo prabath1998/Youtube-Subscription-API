@@ -38,6 +38,18 @@ router.get('/:id',async(req,res)=>{
     }
 });
 
+//update user
+router.patch('/:id',async(req,res)=>{
+    try {
+        const user = await User.findById(req.params.id);
+        user.sub = req.body.sub
+        const a1 = await user.save();
+        res.json(a1);
+    } catch (error) {
+        res.send('Error')
+    }
+})
+
 
 
 module.exports = router;
