@@ -32,7 +32,7 @@ router.post('/',async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     try {
         const user = await User.findById(req.params.id);
-        res.json(userr);
+        res.json(user);
     } catch (error) {
         res.send('Error '+error);
     }
