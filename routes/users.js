@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/user')
 
+//get all users
 router.get('/',async(req,res)=>{
     try {
         const users = await User.find();
@@ -12,6 +13,7 @@ router.get('/',async(req,res)=>{
     }
 });
 
+//add user
 router.post('/',async(req,res)=>{
     const user = new User({
         name:req.body.name,
@@ -24,6 +26,18 @@ router.post('/',async(req,res)=>{
     } catch (error) {
         res.send('Error');
     }
-})
+});
+
+//get user by id
+router.get('/:id',async(req,res)=>{
+    try {
+        const user = await User.findById(req.params.id);
+        res.json(userr);
+    } catch (error) {
+        res.send('Error '+error);
+    }
+});
+
+
 
 module.exports = router;
